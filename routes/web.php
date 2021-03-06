@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('/Dashboard');
+})->middleware('admin');
+
+
+Route::get('/login', [LoginController::class, 'LoginPage']);
+
+Route::post('/masuk', [LoginController::class, 'login']);
+
+Route::get('/register', [RegisterController::class, 'registerakun']);
+
+Route::post('/daftar', [RegisterController::class, 'register']);
+
